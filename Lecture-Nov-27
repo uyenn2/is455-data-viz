@@ -1,0 +1,56 @@
+# %% [markdown]
+# dataviz-nov-27
+Try editing this cell by clicking the pencil on the left!
+# %% [javascript]
+await import ("https://cdn.jsdelivr.net/npm/d3@latest")
+# %% [javascript]
+<svg>
+# %% [html]
+<svg id = "my_viz"></svg>
+# %% [javascript]
+const mysvg = d3.select("#my_viz")
+  .attr("width", 500)
+  .attr("height" , 500)
+const circle = mysvg
+  .append("circle");
+circle
+	.attr("cx", 250)
+	.attr("cy", 250)
+	.attr("r", 15)
+	.style("fill", "red")
+# %% [javascript]
+const myData = [{"x": 250, "y": 250, "r": 10}, {"x": 100, "y": 300, "r": 15}];
+const mysvg = d3.select("#my_viz2")
+  	.attr("width", 500)
+  	.attr("height" , 500)
+	.selectAll("circle")
+	.data(myData)
+  	.enter()
+  	.append("circle")
+	.attr("cx", 500)
+	.attr("cy", 500)
+	.style("fill", "red")
+# %% [javascript]
+const myData = [
+  {"x": 4.0, "y": 4.0},
+  {"x": 3.1, "y": 2.0},
+  {"x": 2.8, "y": 2.4},
+  {"x": 1.2, "y": 4.0}
+]
+
+const xScale = d3.scaleLog().domain([0.0, 5.0]).range([0, 300]);
+const yScale = d3.scaleLog().domain([0.0, 5.0]).range([0, 300]);
+
+d3.select("#myViz3")
+  	.attr("height", 300)
+  	.attr("width", 300)
+  	.selectAll("circle")
+  	.data(myData)
+  	.join("circle")
+	.attr("cx", d => xScale (d.x))
+	.attr("cy", d => yScale (d.y))
+	.attr("r", 10)
+	.style("fill", "black");
+	
+# %% [html]
+<svg id = "myViz3"></svg>
